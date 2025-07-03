@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
+import streamlit as st
+
 
 def get_news_headlines(stock, day_offset=0):
     target_date = datetime.datetime.now() - datetime.timedelta(days=day_offset)
@@ -17,6 +19,9 @@ def get_news_headlines(stock, day_offset=0):
         items = soup.findAll("item")
         for item in items[:5]:
             headlines.append(item.title.text)
+        st.text(f"Fetching RSS: {rss_url}")
+        st.text(f"Response code: {resp.status_code}")
+        st.text(f"Response size: {len(resp.content)} bytes")
     except:
         pass
     return headlines
