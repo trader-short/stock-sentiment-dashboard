@@ -10,7 +10,9 @@ def get_news_headlines(stock, day_offset=0):
 
     headlines = []
     try:
-        resp = requests.get(rss_url)
+        headers = {"User-Agent": "Mozilla/5.0"}
+
+        resp = requests.get(rss_url, headers=headers)
         soup = BeautifulSoup(resp.content, features="xml")
         items = soup.findAll("item")
         for item in items[:5]:
