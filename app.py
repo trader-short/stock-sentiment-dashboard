@@ -28,6 +28,7 @@ def get_sentiment_trend(stock, days=7):
     for day_offset in range(days):
         date = (datetime.datetime.now() - datetime.timedelta(days=day_offset)).strftime("%Y-%m-%d")
         headlines = get_news_headlines(stock, day_offset)
+        
         if headlines:
             daily_scores = []
             for headline in headlines:
